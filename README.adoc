@@ -1,0 +1,87 @@
+= EXPRESS schema manifest specification
+
+WARNING: This is current in draft form. Use it at risk.
+
+== Purpose
+
+In the EXPRESSdocs framework a representation that lists out multiple
+EXPRESS schemas is needed.
+
+The current specification reflects the `schemas.yaml` file structure that is
+used in EXPRESSdocs.
+
+== History
+
+In STEPmod (by ISO/TC 184/SC 4), the `repository_index.xml` served the purpose
+of defining the SMRL collection of EXPRESS schemas.
+
+== Syntax
+
+[source,yaml]
+----
+---
+path: ~/src/iso-10303-srl <1>
+schemas: <2>
+  # listing of EXPRESS schema names
+  action_schema: <3>
+    # `path`: per-schema relative path to the root path
+    path: schemas/resources/action_schema/action_schema.exp <4>
+  aic_associative_draughting_elements:
+    path: schemas/resources/aic_associative_draughting_elements/aic_associative_draughting_elements.exp
+  # ...
+----
+<1> (optional) Root path
+<2> Schema listings
+<3> Individual EXPRESS schema names
+<4> (optional) Individual schema path
+
+Root path::
+(optional) Root path to all schemas listed in this file. If not set, it is the
+current working directory.
+
+Schema listings::
+(mandatory) List of objects that represent an EXPRESS schema each.
+
+Individual schema listing::
+(mandatory) The key is set to name of the EXPRESS schema.
+
+Individual schema path::
+(optional) The path to the schema location (`*.exp` file).
+Only needs to be set if the path differs from `{current
+directory}/{schema_name}.exp`, or when root path is set,
+`{root_path}/{schema_name}.exp`.
+
+.When root path is current directory, schemas paths are overridden
+[example]
+====
+[source,yaml]
+----
+schemas:
+  action_schema:
+    path: schemas/resources/action_schema/action_schema.exp
+  aic_associative_draughting_elements:
+    path: schemas/resources/aic_associative_draughting_elements/aic_associative_draughting_elements.exp
+  # ...
+----
+====
+
+.When root path is set, when schemas are located at `{root_path}/{schema_name}.exp`
+[example]
+====
+[source,yaml]
+----
+path: ~/src/iso-10303-srl
+schemas:
+  action_schema: nil
+  aic_associative_draughting_elements: nil
+  # ...
+----
+====
+
+
+[example]
+An example from EXPRESSdocs is provided in link:schemas-srl.yml[].
+
+== Copyright
+
+ELF.
