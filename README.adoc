@@ -78,6 +78,21 @@ schemas:
 ----
 ====
 
+.When schema names do not match file names
+[example]
+====
+[source,yaml]
+----
+---
+schemas:
+  Event_arm:
+    path: ../../schemas/modules/event/arm.exp
+  Event_mim:
+    path: ../../schemas/modules/event/mim.exp
+  # ...
+----
+====
+
 
 [example]
 An example from EXPRESSdocs is provided in link:schemas-srl.yml[].
